@@ -1,0 +1,2118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>驾驭新范式：中国保险行业深度投资分析报告</title>
+    
+    <!-- TailwindCSS 3.0+ CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- ECharts 5 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.2/dist/echarts.min.js"></script>
+    
+    <!-- Anime.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+    
+    <style>
+        /* 自定义 Tailwind 配置 */
+        .font-playfair { font-family: 'Playfair Display', serif; }
+        .font-inter { font-family: 'Inter', sans-serif; }
+        
+        /* 黑金主题背景 */
+        .matte-bg {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0f0f0f 100%);
+        }
+        
+        /* 金色渐变文字 */
+        .gold-gradient {
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 50%, #fbbf24 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* 蓝色高亮 */
+        .blue-glow {
+            color: #60a5fa;
+            text-shadow: 0 0 20px rgba(96, 165, 250, 0.5);
+        }
+        
+        /* 玻璃拟态卡片 */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* 金色边框 */
+        .gold-border {
+            border: 1px solid #ffd700;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+        }
+        
+        /* 动画延迟 */
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        
+        /* 滚动动画 */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* 超大字体 */
+        .mega-text {
+            font-size: clamp(3rem, 8vw, 12rem);
+            line-height: 0.9;
+        }
+        
+        /* 数字强调 */
+        .number-highlight {
+            font-size: clamp(2rem, 5vw, 6rem);
+            font-weight: 700;
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    </style>
+</head>
+<body class="matte-bg font-inter text-white min-h-screen">
+    
+    <!-- 顶部导航栏 -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-black bg-opacity-95 backdrop-blur-md border-b border-gray-800">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <i class="fas fa-shield-alt text-gold-400 text-2xl"></i>
+                    <span class="text-xl font-bold text-white">保险行业深度分析</span>
+                </div>
+                
+                <!-- 桌面端导航菜单 -->
+                <div class="hidden lg:flex items-center space-x-6">
+                    <a href="#summary" class="nav-link text-gray-300 hover:text-gold-400 transition-colors text-sm">
+                        <i class="fas fa-file-alt mr-2"></i>报告摘要
+                    </a>
+                    <a href="#transformation" class="nav-link text-gray-300 hover:text-gold-400 transition-colors text-sm">
+                        <i class="fas fa-exchange-alt mr-2"></i>大转型
+                    </a>
+                    <a href="#market-size" class="nav-link text-gray-300 hover:text-gold-400 transition-colors text-sm">
+                        <i class="fas fa-chart-bar mr-2"></i>市场规模
+                    </a>
+                    <a href="#regulation" class="nav-link text-gray-300 hover:text-gold-400 transition-colors text-sm">
+                        <i class="fas fa-gavel mr-2"></i>强监管
+                    </a>
+                    <a href="#drivers" class="nav-link text-gray-300 hover:text-gold-400 transition-colors text-sm">
+                        <i class="fas fa-rocket mr-2"></i>增长引擎
+                    </a>
+                    <a href="#outlook" class="nav-link text-gray-300 hover:text-gold-400 transition-colors text-sm">
+                        <i class="fas fa-eye mr-2"></i>投资展望
+                    </a>
+                </div>
+                
+                <!-- 移动端菜单按钮 -->
+                <div class="lg:hidden">
+                    <button id="mobileMenuToggle" class="text-gray-300 hover:text-gold-400">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+                
+                <button id="scrollToTop" class="hidden bg-gold-400 text-black px-4 py-2 rounded-lg hover:bg-gold-300 transition-colors">
+                    <i class="fas fa-arrow-up mr-2"></i>
+                    返回顶部
+                </button>
+            </div>
+            
+            <!-- 移动端导航菜单 -->
+            <div id="mobileMenu" class="lg:hidden hidden mt-4 pb-4 border-t border-gray-800">
+                <div class="flex flex-col space-y-3 mt-4">
+                    <a href="#summary" class="nav-link text-gray-300 hover:text-gold-400 transition-colors text-sm">
+                        <i class="fas fa-file-alt mr-2"></i>报告摘要
+                    </a>
+                    <a href="#transformation" class="nav-link text-gray-300 hover:text-gold-400 transition-colors text-sm">
+                        <i class="fas fa-exchange-alt mr-2"></i>大转型
+                    </a>
+                    <a href="#market-size" class="nav-link text-gray-300 hover:text-gold-400 transition-colors text-sm">
+                        <i class="fas fa-chart-bar mr-2"></i>市场规模
+                    </a>
+                    <a href="#regulation" class="nav-link text-gray-300 hover:text-gold-400 transition-colors text-sm">
+                        <i class="fas fa-gavel mr-2"></i>强监管
+                    </a>
+                    <a href="#drivers" class="nav-link text-gray-300 hover:text-gold-400 transition-colors text-sm">
+                        <i class="fas fa-rocket mr-2"></i>增长引擎
+                    </a>
+                    <a href="#outlook" class="nav-link text-gray-300 hover:text-gold-400 transition-colors text-sm">
+                        <i class="fas fa-eye mr-2"></i>投资展望
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-yellow-500 rounded-full filter blur-3xl"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500 rounded-full filter blur-3xl"></div>
+        </div>
+        
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <div class="fade-in-up">
+                <h1 class="mega-text font-playfair font-bold gold-gradient mb-8">
+                    驾驭新范式
+                </h1>
+                <p class="text-xl text-gray-300 font-light tracking-wide mb-4">
+                    MASTERING THE NEW PARADIGM
+                </p>
+                <h2 class="text-4xl md:text-6xl font-playfair font-semibold text-white mb-12">
+                    中国保险行业深度投资分析报告
+                </h2>
+                
+                <!-- 核心数据展示 -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
+                    <div class="glass-card rounded-lg p-6 fade-in-up delay-1">
+                        <div class="number-highlight">35.9</div>
+                        <p class="text-gray-300 text-lg">万亿元</p>
+                        <p class="text-sm text-gray-400 mt-2">2024年保险业总资产</p>
+                        <p class="text-xs text-blue-400 font-light">TOTAL ASSETS</p>
+                    </div>
+                    <div class="glass-card rounded-lg p-6 fade-in-up delay-2">
+                        <div class="number-highlight">5.7</div>
+                        <p class="text-gray-300 text-lg">万亿元</p>
+                        <p class="text-sm text-gray-400 mt-2">2024年原保险保费收入</p>
+                        <p class="text-xs text-blue-400 font-light">PREMIUM INCOME</p>
+                    </div>
+                    <div class="glass-card rounded-lg p-6 fade-in-up delay-3">
+                        <div class="number-highlight">281</div>
+                        <p class="text-gray-300 text-lg">万人</p>
+                        <p class="text-sm text-gray-400 mt-2">2023年人身险营销人员</p>
+                        <p class="text-xs text-blue-400 font-light">SALES FORCE</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 滚动提示 -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-center">
+            <i class="fas fa-chevron-down text-gold-400 text-xl animate-bounce"></i>
+            <p class="text-xs text-gray-400 mt-2 tracking-wider">SCROLL TO EXPLORE</p>
+        </div>
+    </section>
+    
+    <!-- 报告摘要 -->
+    <section id="summary" class="py-20 relative">
+        <div class="container mx-auto px-6">
+            <div class="max-w-6xl mx-auto">
+                <div class="fade-in-up">
+                    <h2 class="text-5xl font-playfair font-bold gold-gradient mb-8 text-center">
+                        报告摘要
+                    </h2>
+                    <p class="text-center text-blue-400 text-sm font-light tracking-widest mb-12">
+                        EXECUTIVE SUMMARY
+                    </p>
+                </div>
+                
+                <div class="glass-card rounded-xl p-8 md:p-12 fade-in-up mb-8">
+                    <p class="text-lg leading-relaxed text-gray-200 mb-6">
+                        中国保险行业正经历一场深刻的范式转移，从过去以规模驱动的高速增长模式，转向以价值为核心的高质量发展新阶段。此轮转型并非简单的周期性波动，而是由日趋严格的监管环境、深刻的人口结构变迁及颠覆性的技术革命共同催生的结构性变革。
+                    </p>
+                    <p class="text-lg leading-relaxed text-gray-200">
+                        本报告旨在为投资者全面剖析这一新范式下的行业全景、核心驱动力与未来机遇，提供具备前瞻性的投资决策依据。
+                    </p>
+                </div>
+                
+                <!-- 核心投资逻辑详述 -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div class="glass-card rounded-xl p-8 fade-in-up">
+                        <h3 class="text-2xl font-bold gold-gradient mb-6">人身险领域投资逻辑</h3>
+                        <p class="text-sm text-blue-400 mb-6 tracking-wider">LIFE INSURANCE INVESTMENT LOGIC</p>
+                        <div class="space-y-4">
+                            <div class="border-l-4 border-gold-400 pl-4">
+                                <h4 class="font-semibold text-white mb-2">产品创新驱动</h4>
+                                <p class="text-sm text-gray-300 leading-relaxed">
+                                    应优先关注那些能够通过产品创新（如差异化的分红险、"保险+健康/养老"服务包）实现新业务价值（NBV）和新业务价值率（NBV Margin）双提升的公司。
+                                </p>
+                            </div>
+                            <div class="border-l-4 border-blue-400 pl-4">
+                                <h4 class="font-semibold text-white mb-2">高效渠道转型</h4>
+                                <p class="text-sm text-gray-300 leading-relaxed">
+                                    而非仅仅追求保费规模增长的险企。成功的渠道转型将体现在代理人队伍质态的根本性改善和人均产能的显著提升上。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-card rounded-xl p-8 fade-in-up delay-1">
+                        <h3 class="text-2xl font-bold gold-gradient mb-6">财产险领域投资逻辑</h3>
+                        <p class="text-sm text-blue-400 mb-6 tracking-wider">P&C INSURANCE INVESTMENT LOGIC</p>
+                        <div class="space-y-4">
+                            <div class="border-l-4 border-blue-400 pl-4">
+                                <h4 class="font-semibold text-white mb-2">卓越承保能力</h4>
+                                <p class="text-sm text-gray-300 leading-relaxed">
+                                    应重点布局那些展现出卓越承保盈利能力（综合成本率持续低于100%）的公司。这是财险公司核心竞争力的最直观体现。
+                                </p>
+                            </div>
+                            <div class="border-l-4 border-purple-400 pl-4">
+                                <h4 class="font-semibold text-white mb-2">新能源车险突破</h4>
+                                <p class="text-sm text-gray-300 leading-relaxed">
+                                    能够通过数据合作及先进风险模型，战略性应对新能源车险挑战的公司。这将是决定未来十年财险格局的关键能力。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 跨领域通用投资逻辑 -->
+                <div class="mt-8 glass-card rounded-xl p-8 fade-in-up">
+                    <h3 class="text-2xl font-bold gold-gradient mb-6 text-center">跨领域通用投资逻辑</h3>
+                    <p class="text-center text-blue-400 text-sm mb-8 tracking-wider">UNIVERSAL INVESTMENT LOGIC</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="font-semibold text-white mb-4 flex items-center">
+                                <i class="fas fa-shield-alt text-gold-400 mr-3"></i>
+                                雄厚资本实力
+                            </h4>
+                            <p class="text-gray-300 text-sm leading-relaxed mb-4">
+                                在"偿二代二期"框架下具备雄厚资本实力（高偿付能力充足率）的公司。这不仅是监管合规的要求，更是抵御风险、把握发展机遇的根本保障。
+                            </p>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-white mb-4 flex items-center">
+                                <i class="fas fa-chart-line text-blue-400 mr-3"></i>
+                                穿越周期能力
+                            </h4>
+                            <p class="text-gray-300 text-sm leading-relaxed mb-4">
+                                拥有成熟的资产管理能力，尤其是在低利率环境下能穿越周期的公司，将具备显著的长期竞争优势和投资价值。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 核心发现 -->
+    <section class="py-20 relative">
+        <div class="container mx-auto px-6">
+            <div class="fade-in-up">
+                <h2 class="text-5xl font-playfair font-bold gold-gradient mb-8 text-center">
+                    核心发现
+                </h2>
+                <p class="text-center text-blue-400 text-sm font-light tracking-widest mb-16">
+                    KEY FINDINGS
+                </p>
+            </div>
+            
+            <div class="max-w-6xl mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- 监管的"钳形攻势" -->
+                    <div class="glass-card rounded-xl p-8 fade-in-up">
+                        <div class="flex items-center mb-6">
+                            <i class="fas fa-shield-alt text-gold-400 text-2xl mr-4"></i>
+                            <h3 class="text-2xl font-bold text-white">监管的"钳形攻势"</h3>
+                        </div>
+                        <p class="text-sm text-blue-400 mb-4 tracking-wider">REGULATORY PINCER MOVEMENT</p>
+                        <p class="text-gray-200 leading-relaxed">
+                            以"偿二代二期工程"和"报行合一"为代表的监管政策，正形成一股强大的"钳形攻势"。前者通过实施更严格的资本认定和风险计量，显著提升了风险资产的资本成本；后者则通过规范渠道费用，直接压缩了负债端的利润空间。
+                        </p>
+                    </div>
+                    
+                    <!-- 行业格局的"冰火两重天" -->
+                    <div class="glass-card rounded-xl p-8 fade-in-up delay-1">
+                        <div class="flex items-center mb-6">
+                            <i class="fas fa-fire text-gold-400 text-2xl mr-4"></i>
+                            <h3 class="text-2xl font-bold text-white">行业格局的"冰火两重天"</h3>
+                        </div>
+                        <p class="text-sm text-blue-400 mb-4 tracking-wider">INDUSTRY POLARIZATION</p>
+                        <p class="text-gray-200 leading-relaxed">
+                            新环境将加速行业分化，优胜劣汰的趋势愈发明显。未来的赢家将是那些具备卓越资产负债管理能力、强大承保核心技术以及完善的"保险+"生态的头部企业。
+                        </p>
+                    </div>
+                    
+                    <!-- 增长动能的"新旧切换" -->
+                    <div class="glass-card rounded-xl p-8 fade-in-up delay-2">
+                        <div class="flex items-center mb-6">
+                            <i class="fas fa-exchange-alt text-gold-400 text-2xl mr-4"></i>
+                            <h3 class="text-2xl font-bold text-white">增长动能的"新旧切换"</h3>
+                        </div>
+                        <p class="text-sm text-blue-400 mb-4 tracking-wider">GROWTH ENGINE TRANSITION</p>
+                        <p class="text-gray-200 leading-relaxed">
+                            "银发浪潮"为商业健康险和养老金保险开辟了广阔的蓝海市场。新能源汽车的蓬勃发展，则为财险领域带来了高增长与高挑战并存的结构性机遇。
+                        </p>
+                    </div>
+                    
+                    <!-- 销售渠道的"革命性重塑" -->
+                    <div class="glass-card rounded-xl p-8 fade-in-up delay-3">
+                        <div class="flex items-center mb-6">
+                            <i class="fas fa-network-wired text-gold-400 text-2xl mr-4"></i>
+                            <h3 class="text-2xl font-bold text-white">销售渠道的"革命性重塑"</h3>
+                        </div>
+                        <p class="text-sm text-blue-400 mb-4 tracking-wider">CHANNEL REVOLUTION</p>
+                        <p class="text-gray-200 leading-relaxed">
+                            代理人渠道正经历从"人海战术"到"精英化、专业化"的质变。银保渠道在"报行合一"的驱动下，正从低价值的规模渠道向高价值的战略合作平台转型。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 大转型 -->
+    <section id="transformation" class="py-20 relative">
+        <div class="container mx-auto px-6">
+            <div class="fade-in-up">
+                <h2 class="text-5xl font-playfair font-bold gold-gradient mb-8 text-center">
+                    大转型
+                </h2>
+                <p class="text-center text-blue-400 text-sm font-light tracking-widest mb-8">
+                    THE GREAT TRANSFORMATION
+                </p>
+                <p class="text-center text-gray-300 text-lg mb-16">
+                    处于战略拐点的中国保险业
+                </p>
+            </div>
+            
+            <div class="max-w-6xl mx-auto">
+                <!-- 1.1 从高速增长到高质量发展 -->
+                <div class="glass-card rounded-xl p-8 md:p-12 mb-12 fade-in-up">
+                    <h3 class="text-3xl font-bold gold-gradient mb-6">从高速增长到高质量发展</h3>
+                    <p class="text-sm text-blue-400 mb-8 tracking-wider">FROM HIGH-SPEED TO HIGH-QUALITY DEVELOPMENT</p>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+                        <div class="lg:col-span-2">
+                            <p class="text-gray-200 leading-relaxed mb-6">
+                                中国保险业的发展历程，是一部从初步复苏到迅猛扩张的史诗。在过去数十年间，行业以惊人的速度实现了规模的几何级增长。然而，这种高速增长在很大程度上是粗放式的，伴随着激进的投资行为、不规范的销售误导以及潜在的偿付能力风险，为整个金融体系的稳定埋下了隐患。
+                            </p>
+                            <p class="text-gray-200 leading-relaxed mb-6">
+                                近年来，行业发展的宏观叙事发生了根本性转变。监管层明确提出，保险业必须从"高速增长"转向"高质量发展"。这并非一个可选项，而是在防范化解系统性金融风险、更好地服务国家经济社会发展大局背景下的必然要求。
+                            </p>
+                        </div>
+                        <div class="bg-gray-800 bg-opacity-50 rounded-lg p-6">
+                            <h4 class="font-semibold text-gold-400 mb-4">新国十条核心要点</h4>
+                            <ul class="text-sm text-gray-300 space-y-2">
+                                <li>• 充分发挥"经济减震器"功能</li>
+                                <li>• 发挥"社会稳定器"核心作用</li>
+                                <li>• 强调服务实体经济质效</li>
+                                <li>• 防范化解系统性金融风险</li>
+                            </ul>
+                            <p class="text-xs text-blue-400 mt-4">2024年9月国务院发布</p>
+                        </div>
+                    </div>
+                    
+                    <div class="border-t border-gray-600 pt-6">
+                        <h4 class="font-semibold text-white mb-4">转变的核心指标</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="bg-red-900 bg-opacity-30 rounded-lg p-4">
+                                <h5 class="font-semibold text-red-400 mb-2">过去：规模导向</h5>
+                                <p class="text-sm text-gray-300">行业原保费收入增速从2020年之前的两位数水平</p>
+                            </div>
+                            <div class="bg-green-900 bg-opacity-30 rounded-lg p-4">
+                                <h5 class="font-semibold text-green-400 mb-2">现在：质量导向</h5>
+                                <p class="text-sm text-gray-300">近年来的高个位数水平，焦点转向盈利能力和风险管理</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 1.2 全球视野 -->
+                <div class="glass-card rounded-xl p-8 md:p-12 mb-12 fade-in-up">
+                    <h3 class="text-3xl font-bold gold-gradient mb-6">全球视野：中国的市场地位与增长引擎角色</h3>
+                    <p class="text-sm text-blue-400 mb-8 tracking-wider">GLOBAL PERSPECTIVE: CHINA'S ROLE AS GROWTH ENGINE</p>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="text-xl font-semibold text-white mb-4">市场地位</h4>
+                            <div class="space-y-4">
+                                <div class="flex items-center justify-between bg-gray-800 bg-opacity-50 rounded p-3">
+                                    <span class="text-gray-300">全球排名</span>
+                                    <span class="text-gold-400 font-bold">第2位</span>
+                                </div>
+                                <div class="flex items-center justify-between bg-gray-800 bg-opacity-50 rounded p-3">
+                                    <span class="text-gray-300">超越日本时间</span>
+                                    <span class="text-blue-400 font-bold">2017年</span>
+                                </div>
+                                <p class="text-sm text-gray-300 leading-relaxed">
+                                    自2017年超越日本以来，中国已稳居全球第二大保险市场。其重要性不仅体现在存量规模上，更在于其无可比拟的增量贡献。
+                                </p>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-semibold text-white mb-4">增长引擎角色</h4>
+                            <div class="bg-gradient-to-br from-blue-900 to-purple-900 bg-opacity-50 rounded-lg p-6">
+                                <div class="text-center mb-4">
+                                    <div class="text-4xl font-bold gold-gradient">68%</div>
+                                    <p class="text-sm text-gray-300">中国在新兴市场增量中的贡献份额</p>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-3xl font-bold blue-glow">52%</div>
+                                    <p class="text-sm text-gray-300">新兴市场在全球新增保费中的占比</p>
+                                </div>
+                                <p class="text-xs text-gray-400 mt-4 text-center">
+                                    瑞士再保险sigma系列报告预测（2024-2025年）
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 bg-gray-800 bg-opacity-50 rounded-lg p-6">
+                        <p class="text-gray-200 leading-relaxed text-center">
+                            <strong class="text-gold-400">关键洞察：</strong>
+                            在未来两年（2024-2025年），全球新增保费的一半以上（52%）将来自新兴市场，而在这部分增量中，中国市场的贡献份额预计将高达68%。
+                            这一数据揭示了中国保险市场不再仅仅是一个区域性的重要市场，而是驱动全球行业增长的绝对核心。
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- 1.3 行业核心解构 -->
+                <div class="glass-card rounded-xl p-8 md:p-12 fade-in-up">
+                    <h3 class="text-3xl font-bold gold-gradient mb-6">行业核心解构：价值链与商业模式</h3>
+                    <p class="text-sm text-blue-400 mb-8 tracking-wider">INDUSTRY DECONSTRUCTION: VALUE CHAIN & BUSINESS MODELS</p>
+                    
+                    <!-- 保险价值链 -->
+                    <div class="mb-12">
+                        <h4 class="text-2xl font-semibold text-white mb-6">保险价值链</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <div class="bg-gradient-to-br from-gold-900 to-yellow-900 bg-opacity-30 rounded-lg p-6">
+                                <i class="fas fa-calculator text-gold-400 text-2xl mb-4"></i>
+                                <h5 class="font-semibold text-white mb-3">产品设计与定价</h5>
+                                <p class="text-sm text-gray-300 leading-relaxed">
+                                    精算团队基于风险数据、生命表、疾病发生率和投资收益预期，设计保险产品并厘定费率。需要在市场竞争力与风险控制之间取得精妙平衡。
+                                </p>
+                            </div>
+                            <div class="bg-gradient-to-br from-blue-900 to-cyan-900 bg-opacity-30 rounded-lg p-6">
+                                <i class="fas fa-users text-blue-400 text-2xl mb-4"></i>
+                                <h5 class="font-semibold text-white mb-3">销售与营销</h5>
+                                <p class="text-sm text-gray-300 leading-relaxed">
+                                    通过多元化渠道触达客户：个人代理人队伍、银行保险渠道、专业保险经纪与代理公司、互联网直销和平台渠道。
+                                </p>
+                            </div>
+                            <div class="bg-gradient-to-br from-purple-900 to-indigo-900 bg-opacity-30 rounded-lg p-6">
+                                <i class="fas fa-search text-purple-400 text-2xl mb-4"></i>
+                                <h5 class="font-semibold text-white mb-3">核保与风险评估</h5>
+                                <p class="text-sm text-gray-300 leading-relaxed">
+                                    对被保险人的风险状况进行评估，决定是否承保、以何种条件和费率承保。这是风险筛选的第一道关口。
+                                </p>
+                            </div>
+                            <div class="bg-gradient-to-br from-green-900 to-emerald-900 bg-opacity-30 rounded-lg p-6">
+                                <i class="fas fa-handshake text-green-400 text-2xl mb-4"></i>
+                                <h5 class="font-semibold text-white mb-3">理赔管理</h5>
+                                <p class="text-sm text-gray-300 leading-relaxed">
+                                    当保险事故发生时，理赔环节是保险公司履行承诺、"兑现"产品价值的关键时刻。高效、公正的理赔服务是客户体验的核心。
+                                </p>
+                            </div>
+                            <div class="bg-gradient-to-br from-red-900 to-pink-900 bg-opacity-30 rounded-lg p-6">
+                                <i class="fas fa-chart-pie text-red-400 text-2xl mb-4"></i>
+                                <h5 class="font-semibold text-white mb-3">投资管理</h5>
+                                <p class="text-sm text-gray-300 leading-relaxed">
+                                    将收取的巨额保费资金进行专业化投资运作，以获取投资收益。这是保险公司利润的另一重要来源。
+                                </p>
+                            </div>
+                            <div class="bg-gradient-to-br from-gray-900 to-slate-900 bg-opacity-30 rounded-lg p-6">
+                                <i class="fas fa-shield text-gray-400 text-2xl mb-4"></i>
+                                <h5 class="font-semibold text-white mb-3">再保险</h5>
+                                <p class="text-sm text-gray-300 leading-relaxed">
+                                    为保险公司提供保险。通过将自身承保的部分风险转移给再保险公司，保险公司可以分散风险、稳定经营。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 基础商业模式 -->
+                    <div class="mb-12">
+                        <h4 class="text-2xl font-semibold text-white mb-6">基础商业模式：双轮驱动</h4>
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                            <div class="bg-gold-900 bg-opacity-20 rounded-lg p-6">
+                                <h5 class="font-semibold text-gold-400 mb-4 flex items-center">
+                                    <i class="fas fa-coins mr-3"></i>
+                                    承保利润
+                                </h5>
+                                <p class="text-gray-300 text-sm leading-relaxed">
+                                    当收取的保费收入在覆盖了赔款支出和各项运营成本（如销售佣金、管理费用等）后仍有结余，即产生承保利润。这是保险经营的核心利润来源。
+                                </p>
+                            </div>
+                            <div class="bg-blue-900 bg-opacity-20 rounded-lg p-6">
+                                <h5 class="font-semibold text-blue-400 mb-4 flex items-center">
+                                    <i class="fas fa-chart-line mr-3"></i>
+                                    投资利润
+                                </h5>
+                                <p class="text-gray-300 text-sm leading-relaxed">
+                                    通过对保险资金的有效运用，获取的投资收益超过需要支付给保单持有人的保证利率（对于储蓄型产品）的部分，形成投资利润。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 主要保险分类 -->
+                    <div>
+                        <h4 class="text-2xl font-semibold text-white mb-6">主要保险分类</h4>
+                        <div class="space-y-6">
+                            <div class="border border-gold-400 rounded-lg p-6">
+                                <h5 class="font-semibold text-gold-400 mb-4">人身保险</h5>
+                                <p class="text-gray-300 text-sm mb-4">以人的寿命和身体为保险标的，主要包括：</p>
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                    <div>
+                                        <h6 class="font-semibold text-white mb-2">人寿保险</h6>
+                                        <p class="text-xs text-gray-400">定期寿险、终身寿险、两全保险</p>
+                                    </div>
+                                    <div>
+                                        <h6 class="font-semibold text-white mb-2">健康保险</h6>
+                                        <p class="text-xs text-gray-400">医疗险、重大疾病险、长期护理险</p>
+                                    </div>
+                                    <div>
+                                        <h6 class="font-semibold text-white mb-2">意外伤害保险</h6>
+                                        <p class="text-xs text-gray-400">意外死亡或残疾保障</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="border border-blue-400 rounded-lg p-6">
+                                <h5 class="font-semibold text-blue-400 mb-4">财产保险</h5>
+                                <p class="text-gray-300 text-sm mb-4">以财产及其相关利益为保险标的，范围广泛：</p>
+                                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                                    <div>
+                                        <h6 class="font-semibold text-white mb-2">财产损失保险</h6>
+                                        <p class="text-xs text-gray-400">企业财产险、家庭财产险</p>
+                                    </div>
+                                    <div>
+                                        <h6 class="font-semibold text-white mb-2">责任保险</h6>
+                                        <p class="text-xs text-gray-400">公众责任险、产品责任险</p>
+                                    </div>
+                                    <div>
+                                        <h6 class="font-semibold text-white mb-2">信用保证保险</h6>
+                                        <p class="text-xs text-gray-400">保障信用风险</p>
+                                    </div>
+                                    <div>
+                                        <h6 class="font-semibold text-white mb-2">机动车辆保险</h6>
+                                        <p class="text-xs text-gray-400">财产险中占比最大的业务</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 市场规模 -->
+    <section id="market-size" class="py-20 relative">
+        <div class="container mx-auto px-6">
+            <div class="fade-in-up">
+                <h2 class="text-5xl font-playfair font-bold gold-gradient mb-8 text-center">
+                    市场规模
+                </h2>
+                <p class="text-center text-blue-400 text-sm font-light tracking-widest mb-8">
+                    MARKET SIZE
+                </p>
+                <p class="text-center text-gray-300 text-lg mb-16">
+                    量化分析与潜力评估
+                </p>
+            </div>
+            
+            <!-- 2.1 市场体量与增长轨迹 -->
+            <div class="max-w-6xl mx-auto">
+                <div class="glass-card rounded-xl p-8 md:p-12 mb-12 fade-in-up">
+                    <h3 class="text-3xl font-bold gold-gradient mb-6">市场体量与增长轨迹（2017-至今）</h3>
+                    <p class="text-sm text-blue-400 mb-8 tracking-wider">MARKET SIZE & GROWTH TRAJECTORY</p>
+                    
+                    <!-- 总资产规模分析 -->
+                    <div class="mb-12">
+                        <h4 class="text-2xl font-semibold text-white mb-6">总资产规模：加速跨越里程碑</h4>
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                            <div>
+                                <div class="bg-gradient-to-br from-blue-900 to-purple-900 bg-opacity-30 rounded-lg p-6 mb-6">
+                                    <div class="flex items-center justify-between mb-4">
+                                        <span class="text-4xl font-bold gold-gradient">10年</span>
+                                        <i class="fas fa-arrow-right text-gray-400 text-2xl"></i>
+                                        <span class="text-3xl font-bold blue-glow">5年</span>
+                                    </div>
+                                    <p class="text-sm text-gray-300 text-center">从1万亿到10万亿用了10年，从10万亿到20万亿仅用5年</p>
+                                </div>
+                                <div class="space-y-4">
+                                    <div class="flex justify-between items-center bg-gray-800 bg-opacity-50 rounded p-3">
+                                        <span class="text-gray-300">2023年末</span>
+                                        <span class="text-gold-400 font-bold">29.96万亿元</span>
+                                    </div>
+                                    <div class="flex justify-between items-center bg-gray-800 bg-opacity-50 rounded p-3">
+                                        <span class="text-gray-300">2024年末</span>
+                                        <span class="text-green-400 font-bold">35.9万亿元</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="assetsChart" style="height: 300px;"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- 保费收入规模分析 -->
+                    <div class="mb-12">
+                        <h4 class="text-2xl font-semibold text-white mb-6">保费收入规模：突破5万亿历史大关</h4>
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                            <div id="premiumChart" style="height: 300px;"></div>
+                            <div>
+                                <div class="space-y-6">
+                                    <div class="bg-gradient-to-r from-gold-900 to-yellow-900 bg-opacity-30 rounded-lg p-6">
+                                        <h5 class="font-semibold text-gold-400 mb-3">里程碑时刻</h5>
+                                        <div class="space-y-2 text-sm">
+                                            <div class="flex justify-between">
+                                                <span class="text-gray-300">2009年</span>
+                                                <span class="text-white">首次突破1万亿元</span>
+                                            </div>
+                                            <div class="flex justify-between">
+                                                <span class="text-gray-300">2016年</span>
+                                                <span class="text-white">突破3万亿元</span>
+                                            </div>
+                                            <div class="flex justify-between">
+                                                <span class="text-gray-300">2019年</span>
+                                                <span class="text-white">站上4万亿元台阶</span>
+                                            </div>
+                                            <div class="flex justify-between">
+                                                <span class="text-gray-300">2023年</span>
+                                                <span class="text-gold-400 font-bold">历史性突破5万亿元</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="bg-green-900 bg-opacity-20 rounded-lg p-4">
+                                        <div class="text-center">
+                                            <div class="text-3xl font-bold green-400">9.1%</div>
+                                            <p class="text-sm text-gray-300">2023年同比增长（可比口径）</p>
+                                            <p class="text-xs text-gray-400">创下近年新高</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 保费结构分析 -->
+                    <div>
+                        <h4 class="text-2xl font-semibold text-white mb-6">保费结构分析：人身险主导格局稳固</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="bg-gold-900 bg-opacity-20 rounded-lg p-6 text-center">
+                                <div class="text-4xl font-bold gold-gradient mb-2">4.26</div>
+                                <p class="text-gray-300 mb-2">万亿元</p>
+                                <p class="text-sm text-gray-400">2024年人身险保费收入</p>
+                            </div>
+                            <div class="bg-blue-900 bg-opacity-20 rounded-lg p-6 text-center">
+                                <div class="text-4xl font-bold blue-glow mb-2">1.43</div>
+                                <p class="text-gray-300 mb-2">万亿元</p>
+                                <p class="text-sm text-gray-400">2024年财产险保费收入</p>
+                            </div>
+                            <div class="bg-purple-900 bg-opacity-20 rounded-lg p-6 text-center">
+                                <div class="text-4xl font-bold text-purple-400 mb-2">75/25</div>
+                                <p class="text-gray-300 mb-2">分割比例</p>
+                                <p class="text-sm text-gray-400">人身险/财产险结构稳定</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 2.2 渗透率与发展潜力 -->
+                <div class="glass-card rounded-xl p-8 md:p-12 mb-12 fade-in-up">
+                    <h3 class="text-3xl font-bold gold-gradient mb-6">渗透率与发展潜力：国际比较下的"蓝海"机遇</h3>
+                    <p class="text-sm text-blue-400 mb-8 tracking-wider">PENETRATION RATE & DEVELOPMENT POTENTIAL</p>
+                    
+                    <div class="mb-8">
+                        <p class="text-gray-200 leading-relaxed text-center mb-8">
+                            尽管中国保险市场规模已位居世界前列，但从渗透程度来看，其发展仍处于相对初级的阶段，这预示着巨大的长期增长空间。
+                            衡量市场渗透度的两个核心指标——保险深度和保险密度，清晰地揭示了这一"增长鸿沟"。
+                        </p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                        <!-- 保险深度分析 -->
+                        <div>
+                            <h4 class="text-xl font-semibold text-white mb-6 flex items-center">
+                                <i class="fas fa-chart-pie text-gold-400 mr-3"></i>
+                                保险深度 (Insurance Depth)
+                            </h4>
+                            <p class="text-sm text-gray-300 mb-6 leading-relaxed">
+                                该指标衡量保费收入占国内生产总值（GDP）的比重，反映了保险业在整个国民经济中的地位。
+                            </p>
+                            <div class="space-y-4">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-300">中国</span>
+                                    <div class="flex items-center">
+                                        <div class="w-32 h-3 bg-gray-700 rounded mr-3">
+                                            <div class="w-2/5 h-full bg-gradient-to-r from-gold-400 to-yellow-300 rounded"></div>
+                                        </div>
+                                        <span class="text-gold-400 font-bold text-lg">3.88%</span>
+                                    </div>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-300">全球平均</span>
+                                    <div class="flex items-center">
+                                        <div class="w-32 h-3 bg-gray-700 rounded mr-3">
+                                            <div class="w-full h-full bg-gradient-to-r from-blue-400 to-blue-300 rounded"></div>
+                                        </div>
+                                        <span class="text-blue-400 font-bold text-lg">6.74%</span>
+                                    </div>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-300">美国</span>
+                                    <div class="flex items-center">
+                                        <div class="w-32 h-3 bg-gray-700 rounded mr-3">
+                                            <div class="w-full h-full bg-gradient-to-r from-purple-400 to-purple-300 rounded"></div>
+                                        </div>
+                                        <span class="text-purple-400 font-bold text-lg">7.82%</span>
+                                    </div>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-300">英国</span>
+                                    <div class="flex items-center">
+                                        <div class="w-32 h-3 bg-gray-700 rounded mr-3">
+                                            <div class="w-full h-full bg-gradient-to-r from-green-400 to-green-300 rounded"></div>
+                                        </div>
+                                        <span class="text-green-400 font-bold text-lg">10%+</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 保险密度分析 -->
+                        <div>
+                            <h4 class="text-xl font-semibold text-white mb-6 flex items-center">
+                                <i class="fas fa-user-dollar text-blue-400 mr-3"></i>
+                                保险密度 (Insurance Density)
+                            </h4>
+                            <p class="text-sm text-gray-300 mb-6 leading-relaxed">
+                                该指标指人均保费支出，反映了国民的保险消费水平和风险保障意识。
+                            </p>
+                            <div class="space-y-4">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-300">中国</span>
+                                    <div class="flex items-center">
+                                        <div class="w-32 h-3 bg-gray-700 rounded mr-3">
+                                            <div class="w-1/6 h-full bg-gradient-to-r from-gold-400 to-yellow-300 rounded"></div>
+                                        </div>
+                                        <span class="text-gold-400 font-bold text-lg">560美元</span>
+                                    </div>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-300">全球平均</span>
+                                    <div class="flex items-center">
+                                        <div class="w-32 h-3 bg-gray-700 rounded mr-3">
+                                            <div class="w-1/3 h-full bg-gradient-to-r from-blue-400 to-blue-300 rounded"></div>
+                                        </div>
+                                        <span class="text-blue-400 font-bold text-lg">870美元</span>
+                                    </div>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-300">美国</span>
+                                    <div class="flex items-center">
+                                        <div class="w-32 h-3 bg-gray-700 rounded mr-3">
+                                            <div class="w-full h-full bg-gradient-to-r from-purple-400 to-purple-300 rounded"></div>
+                                        </div>
+                                        <span class="text-purple-400 font-bold text-lg">6,000+美元</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-6 bg-blue-900 bg-opacity-20 rounded-lg p-4">
+                                <p class="text-sm text-gray-300 leading-relaxed">
+                                    <strong class="text-blue-400">增长潜力：</strong>
+                                    中国2024年保险密度达4,044元人民币（约合560美元），与美国超过十倍的差距表明市场远未饱和，仍处于一片待开发的"蓝海"之中。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 2.3 资产端配置分析 -->
+                <div class="glass-card rounded-xl p-8 md:p-12 fade-in-up">
+                    <h3 class="text-3xl font-bold gold-gradient mb-6">资产端：万亿资金的投向与配置</h3>
+                    <p class="text-sm text-blue-400 mb-8 tracking-wider">ASSET ALLOCATION: TRILLION-YUAN FUND DEPLOYMENT</p>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                        <div>
+                            <h4 class="text-xl font-semibold text-white mb-4">资产配置结构（2024年Q3）</h4>
+                            <div class="space-y-4">
+                                <div class="flex justify-between items-center bg-gray-800 bg-opacity-50 rounded p-4">
+                                    <div class="flex items-center">
+                                        <div class="w-4 h-4 bg-gold-400 rounded mr-3"></div>
+                                        <span class="text-gray-300">债券</span>
+                                    </div>
+                                    <span class="text-gold-400 font-bold">48.36%</span>
+                                </div>
+                                <div class="flex justify-between items-center bg-gray-800 bg-opacity-50 rounded p-4">
+                                    <div class="flex items-center">
+                                        <div class="w-4 h-4 bg-blue-400 rounded mr-3"></div>
+                                        <span class="text-gray-300">股票和证券投资基金</span>
+                                    </div>
+                                    <span class="text-blue-400 font-bold">13%</span>
+                                </div>
+                                <div class="flex justify-between items-center bg-gray-800 bg-opacity-50 rounded p-4">
+                                    <div class="flex items-center">
+                                        <div class="w-4 h-4 bg-green-400 rounded mr-3"></div>
+                                        <span class="text-gray-300">银行存款</span>
+                                    </div>
+                                    <span class="text-green-400 font-bold">8.38%</span>
+                                </div>
+                                <div class="flex justify-between items-center bg-gray-800 bg-opacity-50 rounded p-4">
+                                    <div class="flex items-center">
+                                        <div class="w-4 h-4 bg-purple-400 rounded mr-3"></div>
+                                        <span class="text-gray-300">其他投资</span>
+                                    </div>
+                                    <span class="text-purple-400 font-bold">20.37%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-semibold text-white mb-4">资产运用规模增长</h4>
+                            <div class="space-y-6">
+                                <div class="bg-gradient-to-r from-blue-900 to-purple-900 bg-opacity-30 rounded-lg p-6 text-center">
+                                    <div class="text-3xl font-bold gold-gradient mb-2">32.15</div>
+                                    <p class="text-gray-300 mb-1">万亿元</p>
+                                    <p class="text-sm text-gray-400">2024年9月末资金运用余额</p>
+                                </div>
+                                <div class="bg-gradient-to-r from-gold-900 to-yellow-900 bg-opacity-30 rounded-lg p-6 text-center">
+                                    <div class="text-3xl font-bold blue-glow mb-2">27.67</div>
+                                    <p class="text-gray-300 mb-1">万亿元</p>
+                                    <p class="text-sm text-gray-400">2023年末资金运用余额</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="border-t border-gray-600 pt-6">
+                        <h4 class="font-semibold text-white mb-4">配置策略趋势</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="bg-gold-900 bg-opacity-20 rounded-lg p-4">
+                                <h5 class="font-semibold text-gold-400 mb-2">债券为王</h5>
+                                <p class="text-sm text-gray-300">债券占比48.36%，是保险资金的"压舱石"，险企普遍增加长久期、高信用等级债券配置</p>
+                            </div>
+                            <div class="bg-blue-900 bg-opacity-20 rounded-lg p-4">
+                                <h5 class="font-semibold text-blue-400 mb-2">权益审慎</h5>
+                                <p class="text-sm text-gray-300">股票和基金合计13%，获取超额收益的主要来源，但采取更为审慎的结构化策略</p>
+                            </div>
+                            <div class="bg-purple-900 bg-opacity-20 rounded-lg p-4">
+                                <h5 class="font-semibold text-purple-400 mb-2">另类多元</h5>
+                                <p class="text-sm text-gray-300">其他投资占比20.37%，包括非标资产、股权投资计划、不动产等</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 国际对比数据 -->
+                <div class="mt-16 glass-card rounded-xl p-8 fade-in-up">
+                    <h3 class="text-3xl font-bold mb-8 gold-gradient text-center">保险渗透度国际比较</h3>
+                    <p class="text-center text-blue-400 text-sm mb-8 tracking-wider">INTERNATIONAL COMPARISON</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="text-xl font-semibold mb-4 text-white">保险深度 (保费/GDP)</h4>
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-300">中国</span>
+                                    <div class="flex items-center">
+                                        <div class="w-24 h-2 bg-gray-700 rounded mr-3">
+                                            <div class="w-1/2 h-full bg-gradient-to-r from-gold-400 to-yellow-300 rounded"></div>
+                                        </div>
+                                        <span class="text-gold-400 font-bold">3.88%</span>
+                                    </div>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-300">全球平均</span>
+                                    <div class="flex items-center">
+                                        <div class="w-24 h-2 bg-gray-700 rounded mr-3">
+                                            <div class="w-full h-full bg-gradient-to-r from-blue-400 to-blue-300 rounded"></div>
+                                        </div>
+                                        <span class="text-blue-400 font-bold">6.74%</span>
+                                    </div>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-300">美国</span>
+                                    <div class="flex items-center">
+                                        <div class="w-24 h-2 bg-gray-700 rounded mr-3">
+                                            <div class="w-full h-full bg-gradient-to-r from-purple-400 to-purple-300 rounded"></div>
+                                        </div>
+                                        <span class="text-purple-400 font-bold">7.82%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4 class="text-xl font-semibold mb-4 text-white">保险密度 (美元/人)</h4>
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-300">中国</span>
+                                    <div class="flex items-center">
+                                        <div class="w-24 h-2 bg-gray-700 rounded mr-3">
+                                            <div class="w-1/5 h-full bg-gradient-to-r from-gold-400 to-yellow-300 rounded"></div>
+                                        </div>
+                                        <span class="text-gold-400 font-bold">460</span>
+                                    </div>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-300">全球平均</span>
+                                    <div class="flex items-center">
+                                        <div class="w-24 h-2 bg-gray-700 rounded mr-3">
+                                            <div class="w-2/5 h-full bg-gradient-to-r from-blue-400 to-blue-300 rounded"></div>
+                                        </div>
+                                        <span class="text-blue-400 font-bold">870</span>
+                                    </div>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-300">美国</span>
+                                    <div class="flex items-center">
+                                        <div class="w-24 h-2 bg-gray-700 rounded mr-3">
+                                            <div class="w-full h-full bg-gradient-to-r from-purple-400 to-purple-300 rounded"></div>
+                                        </div>
+                                        <span class="text-purple-400 font-bold">6,000+</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 强监管之手 -->
+    <section id="regulation" class="py-20 relative">
+        <div class="container mx-auto px-6">
+            <div class="fade-in-up">
+                <h2 class="text-5xl font-playfair font-bold gold-gradient mb-8 text-center">
+                    强监管之手
+                </h2>
+                <p class="text-center text-blue-400 text-sm font-light tracking-widest mb-8">
+                    THE IRON FIST OF REGULATION
+                </p>
+                <p class="text-center text-gray-300 text-lg mb-16">
+                    从理念到制度的全方位变革
+                </p>
+            </div>
+            
+            <div class="max-w-6xl mx-auto">
+                <!-- 3.1 监管理念的深刻转变 -->
+                <div class="glass-card rounded-xl p-8 md:p-12 mb-12 fade-in-up">
+                    <h3 class="text-3xl font-bold gold-gradient mb-6">监管理念的深刻转变</h3>
+                    <p class="text-sm text-blue-400 mb-8 tracking-wider">REGULATORY PHILOSOPHY TRANSFORMATION</p>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                        <div>
+                            <p class="text-gray-200 leading-relaxed mb-6">
+                                中国保险监管历经数十年变迁，如今正站在一个关键历史节点。监管机构不再满足于单纯的事后处置，而是建立起了一套更为前瞻性、穿透性、系统性的监管体系。
+                                这一转变的核心逻辑并非仅仅为了约束行业发展，而是为了确保行业能够在可控的风险边界内，以更高质量、更可持续的方式服务于国家经济社会发展大局。
+                            </p>
+                            <div class="bg-gray-800 bg-opacity-50 rounded-lg p-6">
+                                <h4 class="font-semibold text-white mb-4">监管转变的三大逻辑</h4>
+                                <div class="space-y-3 text-sm">
+                                    <div class="flex items-start">
+                                        <span class="text-gold-400 font-bold mr-2">•</span>
+                                        <span class="text-gray-300">从规模导向转向质量导向</span>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <span class="text-blue-400 font-bold mr-2">•</span>
+                                        <span class="text-gray-300">从事后处置转向事前预防</span>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <span class="text-purple-400 font-bold mr-2">•</span>
+                                        <span class="text-gray-300">从单体监管转向系统性监管</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="space-y-6">
+                                <div class="bg-gradient-to-r from-red-900 to-pink-900 bg-opacity-30 rounded-lg p-6">
+                                    <h4 class="font-semibold text-red-400 mb-3">过去：粗放式监管</h4>
+                                    <ul class="text-sm text-gray-300 space-y-2">
+                                        <li>• 重保费规模，轻风险防控</li>
+                                        <li>• 重经营结果，轻治理过程</li>
+                                        <li>• 重单体合规，轻系统影响</li>
+                                        <li>• 重事后处置，轻事前预警</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-gradient-to-r from-green-900 to-emerald-900 bg-opacity-30 rounded-lg p-6">
+                                    <h4 class="font-semibold text-green-400 mb-3">现在：精准式监管</h4>
+                                    <ul class="text-sm text-gray-300 space-y-2">
+                                        <li>• 重价值创造，轻虚假繁荣</li>
+                                        <li>• 重治理质量，轻规模冲动</li>
+                                        <li>• 重系统稳定，轻个体逐利</li>
+                                        <li>• 重风险预防，轻亡羊补牢</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="border-t border-gray-600 pt-6">
+                        <h4 class="font-semibold text-white mb-4">新监管理念的核心要素</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="bg-gold-900 bg-opacity-20 rounded-lg p-4">
+                                <i class="fas fa-search-plus text-gold-400 text-2xl mb-3"></i>
+                                <h5 class="font-semibold text-white mb-2">穿透式监管</h5>
+                                <p class="text-sm text-gray-300">不再满足于表面数据，要求穿透到底层资产、实际业务和真实风险</p>
+                            </div>
+                            <div class="bg-blue-900 bg-opacity-20 rounded-lg p-4">
+                                <i class="fas fa-shield-alt text-blue-400 text-2xl mb-3"></i>
+                                <h5 class="font-semibold text-white mb-2">宏观审慎监管</h5>
+                                <p class="text-sm text-gray-300">从系统性风险角度出发，防范行业集体性风险的积累</p>
+                            </div>
+                            <div class="bg-purple-900 bg-opacity-20 rounded-lg p-4">
+                                <i class="fas fa-eye text-purple-400 text-2xl mb-3"></i>
+                                <h5 class="font-semibold text-white mb-2">行为监管</h5>
+                                <p class="text-sm text-gray-300">重点关注市场行为是否符合消费者保护和公平竞争原则</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 3.2 偿二代二期工程 -->
+                <div class="glass-card rounded-xl p-8 md:p-12 mb-12 fade-in-up">
+                    <h3 class="text-3xl font-bold gold-gradient mb-6">偿二代二期工程：更精准的风险计量</h3>
+                    <p class="text-sm text-blue-400 mb-8 tracking-wider">SOLVENCY II PHASE 2: PRECISE RISK MEASUREMENT</p>
+                    
+                    <div class="mb-8">
+                        <p class="text-gray-200 leading-relaxed text-center mb-8">
+                            "偿二代二期工程"并非对一期的小修小补，而是一次深刻的、系统性的升级。其核心目标是进一步挤出资本"水分"，
+                            更精准地计量风险，使偿付能力充足率这一核心指标真正反映保险公司的风险承担能力和财务稳健程度。
+                        </p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                        <div>
+                            <h4 class="text-xl font-semibold text-white mb-6">核心变化要点</h4>
+                            <div class="space-y-6">
+                                <div class="border-l-4 border-gold-400 pl-4">
+                                    <h5 class="font-semibold text-gold-400 mb-2">资本认定更严格</h5>
+                                    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+                                        限制保单未来盈余计入核心资本比例不得超过35%，同时对非控股子公司股权投资采用权益法计量，
+                                        有效防止了通过复杂股权结构虚增资本的行为。
+                                    </p>
+                                    <div class="bg-gray-800 bg-opacity-50 rounded p-3 mt-2">
+                                        <p class="text-xs text-gray-400">
+                                            影响：预计将减少行业整体认可资本约5-10%
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="border-l-4 border-blue-400 pl-4">
+                                    <h5 class="font-semibold text-blue-400 mb-2">风险计量更科学</h5>
+                                    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+                                        实施全面穿透原则，要求对信托、资管计划等"通道"类投资，穿透识别底层资产的真实风险特征，
+                                        按照底层资产的风险系数计提资本。
+                                    </p>
+                                    <div class="bg-gray-800 bg-opacity-50 rounded p-3 mt-2">
+                                        <p class="text-xs text-gray-400">
+                                            影响：复杂金融产品的资本成本大幅上升
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="border-l-4 border-purple-400 pl-4">
+                                    <h5 class="font-semibold text-purple-400 mb-2">战略引导更明确</h5>
+                                    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+                                        对绿色债券给予10%的资本折扣，对服务国家重大战略的长期股权投资提供优惠，
+                                        鼓励保险资金更好地服务实体经济。
+                                    </p>
+                                    <div class="bg-gray-800 bg-opacity-50 rounded p-3 mt-2">
+                                        <p class="text-xs text-gray-400">
+                                            影响：引导资金流向绿色经济和战略新兴产业
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <!-- 偿付能力监管三支柱图表 -->
+                            <div id="solvencyChart" style="height: 400px;"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-800 bg-opacity-50 rounded-lg p-6">
+                        <h4 class="font-semibold text-white mb-4">偿二代三支柱监管框架</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="text-center">
+                                <div class="bg-gold-900 bg-opacity-30 rounded-lg p-4 mb-3">
+                                    <i class="fas fa-calculator text-gold-400 text-2xl"></i>
+                                </div>
+                                <h5 class="font-semibold text-white mb-2">第一支柱</h5>
+                                <p class="text-sm text-gray-300">定量资本要求，包括最低资本、偿付能力充足率计算</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="bg-blue-900 bg-opacity-30 rounded-lg p-4 mb-3">
+                                    <i class="fas fa-chart-line text-blue-400 text-2xl"></i>
+                                </div>
+                                <h5 class="font-semibold text-white mb-2">第二支柱</h5>
+                                <p class="text-sm text-gray-300">定性监管要求，包括治理结构、内控制度、风险管理</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="bg-purple-900 bg-opacity-30 rounded-lg p-4 mb-3">
+                                    <i class="fas fa-file-alt text-purple-400 text-2xl"></i>
+                                </div>
+                                <h5 class="font-semibold text-white mb-2">第三支柱</h5>
+                                <p class="text-sm text-gray-300">市场约束机制，包括信息披露、透明度要求</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 3.3 报行合一 -->
+                <div class="glass-card rounded-xl p-8 md:p-12 mb-12 fade-in-up">
+                    <h3 class="text-3xl font-bold gold-gradient mb-6">报行合一：精准打击渠道乱象</h3>
+                    <p class="text-sm text-blue-400 mb-8 tracking-wider">CHANNEL FEE STANDARDIZATION</p>
+                    
+                    <div class="mb-8">
+                        <p class="text-gray-200 leading-relaxed mb-6">
+                            "报行合一"政策是监管部门针对保险销售渠道长期存在的"明费暗佣"乱象，推出的一项精准制导式改革措施。
+                            该政策要求保险公司向监管部门报告的渠道费用率与实际执行的费用率必须一致，旨在从根源上治理渠道费用虚高、恶性竞争等问题。
+                        </p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                        <div>
+                            <h4 class="text-xl font-semibold text-white mb-6">政策核心内容</h4>
+                            <div class="space-y-4">
+                                <div class="bg-red-900 bg-opacity-20 rounded-lg p-4">
+                                    <h5 class="font-semibold text-red-400 mb-2">治理对象</h5>
+                                    <p class="text-sm text-gray-300">银保渠道虚高手续费、代理人渠道利益输送、互联网平台隐性费用</p>
+                                </div>
+                                <div class="bg-blue-900 bg-opacity-20 rounded-lg p-4">
+                                    <h5 class="font-semibold text-blue-400 mb-2">实施范围</h5>
+                                    <p class="text-sm text-gray-300">分阶段推进：银保渠道（2023年）→代理人渠道（2024年）→全渠道覆盖</p>
+                                </div>
+                                <div class="bg-green-900 bg-opacity-20 rounded-lg p-4">
+                                    <h5 class="font-semibold text-green-400 mb-2">执行标准</h5>
+                                    <p class="text-sm text-gray-300">报备费用率与实际费用率偏差不得超过±3%，严格执行穿透式监管</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-semibold text-white mb-6">量化影响分析</h4>
+                            <div class="space-y-6">
+                                <div class="bg-gradient-to-r from-gold-900 to-yellow-900 bg-opacity-30 rounded-lg p-6 text-center">
+                                    <div class="text-4xl font-bold gold-gradient mb-2">30%</div>
+                                    <p class="text-gray-300 mb-1">平均降幅</p>
+                                    <p class="text-sm text-gray-400">银保渠道佣金率下降幅度</p>
+                                </div>
+                                <div class="bg-gradient-to-r from-blue-900 to-cyan-900 bg-opacity-30 rounded-lg p-6 text-center">
+                                    <div class="text-4xl font-bold blue-glow mb-2">15-20%</div>
+                                    <p class="text-gray-300 mb-1">NBV率提升</p>
+                                    <p class="text-sm text-gray-400">新业务价值率改善幅度</p>
+                                </div>
+                                <div class="bg-gradient-to-r from-purple-900 to-indigo-900 bg-opacity-30 rounded-lg p-6 text-center">
+                                    <div class="text-4xl font-bold text-purple-400 mb-2">100%</div>
+                                    <p class="text-gray-300 mb-1">覆盖率</p>
+                                    <p class="text-sm text-gray-400">2025年全渠道政策覆盖</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-800 bg-opacity-50 rounded-lg p-6">
+                        <h4 class="text-xl font-semibold text-white mb-6">政策深度影响</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div>
+                                <h5 class="font-semibold text-gold-400 mb-3 flex items-center">
+                                    <i class="fas fa-arrow-down text-gold-400 mr-2"></i>
+                                    负债成本显著下降
+                                </h5>
+                                <p class="text-sm text-gray-300 leading-relaxed mb-4">
+                                    银保渠道手续费率从普遍的3.5-4.5%降至2.5-3.5%，直接降低了保险公司的获客成本。
+                                    这一成本的下降能够直接转化为更高的新业务价值率，改善保险公司的盈利能力。
+                                </p>
+                            </div>
+                            <div>
+                                <h5 class="font-semibold text-blue-400 mb-3 flex items-center">
+                                    <i class="fas fa-sync-alt text-blue-400 mr-2"></i>
+                                    竞争逻辑根本重塑
+                                </h5>
+                                <p class="text-sm text-gray-300 leading-relaxed mb-4">
+                                    过去保险公司主要通过"价格战"（提高渠道费用）获客，现在必须转向"价值战"，
+                                    通过产品创新、服务优化、品牌建设来吸引客户，推动行业向高质量发展转型。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 3.4 其他重要监管政策 -->
+                <div class="glass-card rounded-xl p-8 md:p-12 fade-in-up">
+                    <h3 class="text-3xl font-bold gold-gradient mb-6">其他重要监管政策</h3>
+                    <p class="text-sm text-blue-400 mb-8 tracking-wider">OTHER KEY REGULATORY POLICIES</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <!-- 投资端监管 -->
+                        <div class="bg-gradient-to-br from-blue-900 to-cyan-900 bg-opacity-20 rounded-lg p-6">
+                            <h4 class="text-xl font-semibold text-blue-400 mb-4 flex items-center">
+                                <i class="fas fa-chart-line mr-3"></i>
+                                投资端监管强化
+                            </h4>
+                            <div class="space-y-4 text-sm">
+                                <div class="border-l-4 border-blue-400 pl-3">
+                                    <p class="text-white font-semibold mb-1">权益投资比例限制</p>
+                                    <p class="text-gray-300">股票和股票型基金投资余额不得超过上季度末总资产的30%</p>
+                                </div>
+                                <div class="border-l-4 border-cyan-400 pl-3">
+                                    <p class="text-white font-semibold mb-1">另类投资穿透管理</p>
+                                    <p class="text-gray-300">信托、资管等产品须穿透至底层资产，按实际风险计提资本</p>
+                                </div>
+                                <div class="border-l-4 border-teal-400 pl-3">
+                                    <p class="text-white font-semibold mb-1">关联交易监管</p>
+                                    <p class="text-gray-300">严格限制与关联方的各类交易，防范利益输送风险</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 消费者保护 -->
+                        <div class="bg-gradient-to-br from-green-900 to-emerald-900 bg-opacity-20 rounded-lg p-6">
+                            <h4 class="text-xl font-semibold text-green-400 mb-4 flex items-center">
+                                <i class="fas fa-shield-alt mr-3"></i>
+                                消费者权益保护
+                            </h4>
+                            <div class="space-y-4 text-sm">
+                                <div class="border-l-4 border-green-400 pl-3">
+                                    <p class="text-white font-semibold mb-1">销售行为规范</p>
+                                    <p class="text-gray-300">严禁误导销售、强制搭售，要求产品说明书通俗易懂</p>
+                                </div>
+                                <div class="border-l-4 border-emerald-400 pl-3">
+                                    <p class="text-white font-semibold mb-1">理赔服务监管</p>
+                                    <p class="text-gray-300">建立理赔服务时效监管指标，推动"闪赔"等便民措施</p>
+                                </div>
+                                <div class="border-l-4 border-teal-400 pl-3">
+                                    <p class="text-white font-semibold mb-1">信息披露要求</p>
+                                    <p class="text-gray-300">强制披露产品费用率、投资收益分配等关键信息</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 bg-gray-800 bg-opacity-50 rounded-lg p-6">
+                        <h4 class="font-semibold text-white mb-4 text-center">监管政策协同效应</h4>
+                        <p class="text-gray-200 leading-relaxed text-center">
+                            上述各项监管政策并非孤立实施，而是形成了一个有机统一的政策体系。
+                            偿二代二期强化资本约束，报行合一规范渠道行为，投资监管防范系统性风险，消费者保护提升行业形象。
+                            这些政策的协同作用，正在深刻重塑中国保险业的商业生态和竞争格局。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 增长引擎 -->
+    <section id="drivers" class="py-20 relative">
+        <div class="container mx-auto px-6">
+            <div class="fade-in-up">
+                <h2 class="text-5xl font-playfair font-bold gold-gradient mb-8 text-center">
+                    未来增长的双引擎
+                </h2>
+                <p class="text-center text-blue-400 text-sm font-light tracking-widest mb-16">
+                    DUAL GROWTH ENGINES
+                </p>
+            </div>
+            
+            <div class="max-w-6xl mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    <!-- 银发浪潮 -->
+                    <div class="glass-card rounded-xl p-8 fade-in-up">
+                        <div class="flex items-center mb-6">
+                            <i class="fas fa-user-clock text-gold-400 text-3xl mr-4"></i>
+                            <h3 class="text-3xl font-bold text-white">银发浪潮</h3>
+                        </div>
+                        <p class="text-sm text-blue-400 mb-6 tracking-wider">AGING SOCIETY</p>
+                        
+                        <div class="mb-8">
+                            <div class="flex justify-between items-end mb-4">
+                                <span class="text-6xl font-bold gold-gradient">4</span>
+                                <div class="text-right">
+                                    <p class="text-lg text-gray-300">亿人</p>
+                                    <p class="text-sm text-gray-400">2035年60岁以上人口</p>
+                                </div>
+                            </div>
+                            <div class="w-full h-2 bg-gray-700 rounded">
+                                <div class="w-3/4 h-full bg-gradient-to-r from-gold-400 to-yellow-300 rounded"></div>
+                            </div>
+                            <p class="text-xs text-gray-400 mt-2">占总人口近1/3</p>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div class="border-l-4 border-gold-400 pl-4">
+                                <h4 class="font-semibold text-white mb-1">养老保障需求</h4>
+                                <p class="text-sm text-gray-300">企业年金和个人养老金发展空间巨大</p>
+                            </div>
+                            <div class="border-l-4 border-blue-400 pl-4">
+                                <h4 class="font-semibold text-white mb-1">健康护理需求</h4>
+                                <p class="text-sm text-gray-300">商业健康险和长期护理险市场广阔</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 保险科技革命 -->
+                    <div class="glass-card rounded-xl p-8 fade-in-up delay-1">
+                        <div class="flex items-center mb-6">
+                            <i class="fas fa-robot text-blue-400 text-3xl mr-4"></i>
+                            <h3 class="text-3xl font-bold text-white">科技革命</h3>
+                        </div>
+                        <p class="text-sm text-blue-400 mb-6 tracking-wider">INSURTECH REVOLUTION</p>
+                        
+                        <div class="mb-8">
+                            <div class="flex justify-between items-end mb-4">
+                                <span class="text-6xl font-bold blue-glow">百亿</span>
+                                <div class="text-right">
+                                    <p class="text-lg text-gray-300">级投入</p>
+                                    <p class="text-sm text-gray-400">头部险企年科技投入</p>
+                                </div>
+                            </div>
+                            <div class="w-full h-2 bg-gray-700 rounded">
+                                <div class="w-4/5 h-full bg-gradient-to-r from-blue-400 to-blue-300 rounded"></div>
+                            </div>
+                            <p class="text-xs text-gray-400 mt-2">年投入金额动辄百亿级别</p>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div class="border-l-4 border-blue-400 pl-4">
+                                <h4 class="font-semibold text-white mb-1">AI与大数据</h4>
+                                <p class="text-sm text-gray-300">精准风险识别和个性化定价</p>
+                            </div>
+                            <div class="border-l-4 border-purple-400 pl-4">
+                                <h4 class="font-semibold text-white mb-1">降本增效</h4>
+                                <p class="text-sm text-gray-300">综合成本率优化6.6%-8.9%</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 人口老龄化详细分析 -->
+                <div class="glass-card rounded-xl p-8 md:p-12 mt-12 fade-in-up">
+                    <h3 class="text-3xl font-bold gold-gradient mb-6">银发浪潮：人口老龄化催生的长期结构性红利</h3>
+                    <p class="text-sm text-blue-400 mb-8 tracking-wider">AGING SOCIETY: LONG-TERM STRUCTURAL DIVIDEND</p>
+                    
+                    <div class="mb-8">
+                        <p class="text-gray-200 leading-relaxed text-center mb-6">
+                            中国正以前所未有的速度迈入老龄化社会。官方预测，到2035年，中国60岁以上的人口将接近总人口的三分之一，
+                            规模将超过4亿。这一深刻的社会结构变迁，对以国家为主导的社会保障体系构成了严峻挑战，
+                            但与此同时，也为商业保险开辟了一个持续数十年的、巨大的结构性增长空间。
+                        </p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                        <div>
+                            <h4 class="text-xl font-semibold text-white mb-6">核心需求驱动</h4>
+                            <div class="space-y-6">
+                                <div class="bg-gradient-to-r from-gold-900 to-yellow-900 bg-opacity-30 rounded-lg p-6">
+                                    <h5 class="font-semibold text-gold-400 mb-3 flex items-center">
+                                        <i class="fas fa-coins mr-2"></i>
+                                        养老与财富管理需求
+                                    </h5>
+                                    <p class="text-sm text-gray-300 leading-relaxed">
+                                        随着人均寿命的延长、家庭结构的小型化以及传统"养儿防老"观念的弱化，
+                                        个人和家庭对退休后的财务安排和长期收入保障的需求日益迫切。
+                                        在基本养老金"保基本"的功能定位下，商业养老保险将成为满足这一海量需求的主力军。
+                                    </p>
+                                </div>
+                                <div class="bg-gradient-to-r from-green-900 to-emerald-900 bg-opacity-30 rounded-lg p-6">
+                                    <h5 class="font-semibold text-green-400 mb-3 flex items-center">
+                                        <i class="fas fa-heartbeat mr-2"></i>
+                                        健康与长期护理需求
+                                    </h5>
+                                    <p class="text-sm text-gray-300 leading-relaxed">
+                                        年龄是健康风险最直接的决定因素。老年人口的增加，必然伴随着慢性病患病率的上升和医疗支出的增长。
+                                        这不仅推高了对覆盖更广、保障更深的商业健康保险的需求，
+                                        也催生了对商业长期护理保险这一新兴险种的巨大潜在需求。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-semibold text-white mb-6">数据实证支撑</h4>
+                            <div class="bg-blue-900 bg-opacity-20 rounded-lg p-6">
+                                <h5 class="font-semibold text-blue-400 mb-4">动态面板数据分析结果</h5>
+                                <div class="space-y-4 text-sm">
+                                    <div class="flex justify-between items-center bg-gray-800 bg-opacity-50 rounded p-3">
+                                        <span class="text-gray-300">老年人口比重每上升1个百分点</span>
+                                        <span class="text-blue-400 font-bold">影响→</span>
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <div class="text-center bg-green-900 bg-opacity-30 rounded p-3">
+                                            <div class="text-2xl font-bold text-green-400">8.45%</div>
+                                            <p class="text-xs text-gray-400">人身保险密度上涨</p>
+                                        </div>
+                                        <div class="text-center bg-purple-900 bg-opacity-30 rounded p-3">
+                                            <div class="text-2xl font-bold text-purple-400">0.21</div>
+                                            <p class="text-xs text-gray-400">保险深度提升(百分点)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-xs text-gray-400 mt-4 italic">
+                                    数据来源：基于中国市场的动态面板数据分析
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="border-t border-gray-600 pt-6">
+                        <h4 class="font-semibold text-white mb-4 text-center">第三支柱养老保险发展机遇</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="text-center bg-gradient-to-br from-yellow-900 to-orange-900 bg-opacity-30 rounded-lg p-4">
+                                <i class="fas fa-building text-yellow-400 text-2xl mb-3"></i>
+                                <h5 class="font-semibold text-white mb-2">第二支柱</h5>
+                                <p class="text-sm text-gray-300">企业年金覆盖面有限，发展空间巨大</p>
+                            </div>
+                            <div class="text-center bg-gradient-to-br from-blue-900 to-indigo-900 bg-opacity-30 rounded-lg p-4">
+                                <i class="fas fa-user text-blue-400 text-2xl mb-3"></i>
+                                <h5 class="font-semibold text-white mb-2">第三支柱</h5>
+                                <p class="text-sm text-gray-300">个人养老金制度刚刚起步，潜力无限</p>
+                            </div>
+                            <div class="text-center bg-gradient-to-br from-green-900 to-teal-900 bg-opacity-30 rounded-lg p-4">
+                                <i class="fas fa-chart-line text-green-400 text-2xl mb-3"></i>
+                                <h5 class="font-semibold text-white mb-2">商业养老</h5>
+                                <p class="text-sm text-gray-300">专属养老保险产品迎来历史机遇</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 保险科技详细分析 -->
+                <div class="glass-card rounded-xl p-8 md:p-12 mt-12 fade-in-up">
+                    <h3 class="text-3xl font-bold gold-gradient mb-6">保险科技革命：人工智能、大数据与全价值链重塑</h3>
+                    <p class="text-sm text-blue-400 mb-8 tracking-wider">INSURTECH REVOLUTION: AI, BIG DATA & VALUE CHAIN TRANSFORMATION</p>
+                    
+                    <div class="mb-8">
+                        <p class="text-gray-200 leading-relaxed text-center mb-6">
+                            以人工智能（AI）、大数据、云计算为代表的保险科技（Insurtech），正以前所未有的深度和广度渗透到保险行业的每一个环节，
+                            从根本上改变着行业的成本结构、运营效率和商业模式。头部保险公司已将科技投入提升至战略高度，
+                            年投入金额动辄百亿级别，旨在通过科技构建核心竞争力。
+                        </p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                        <div>
+                            <h4 class="text-xl font-semibold text-white mb-6">科技赋能价值链</h4>
+                            <div class="space-y-4">
+                                <div class="border-l-4 border-blue-400 pl-4">
+                                    <h5 class="font-semibold text-blue-400 mb-2">产品设计与定价</h5>
+                                    <p class="text-sm text-gray-300 leading-relaxed">
+                                        大数据和AI算法使得保险公司能够进行更精细的风险识别和客户分层，
+                                        从而实现个性化、动态化的产品定价。例如，基于驾驶行为数据的UBI车险，
+                                        就是对传统"从车"定价模式的颠覆。
+                                    </p>
+                                </div>
+                                <div class="border-l-4 border-green-400 pl-4">
+                                    <h5 class="font-semibold text-green-400 mb-2">营销与销售</h5>
+                                    <p class="text-sm text-gray-300 leading-relaxed">
+                                        AI模型可以精准分析客户画像和潜在需求，向其推荐最合适的产品，提升销售转化率。
+                                        同时，各类数字化工具为代理人赋能，实现了B2A模式的创新。
+                                    </p>
+                                </div>
+                                <div class="border-l-4 border-purple-400 pl-4">
+                                    <h5 class="font-semibold text-purple-400 mb-2">核保与理赔</h5>
+                                    <p class="text-sm text-gray-300 leading-relaxed">
+                                        AI技术正在自动化处理大量标准化业务。美国的Lemonade公司利用AI聊天机器人，
+                                        可以在90秒内完成一份租客险的核保和出单。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-semibold text-white mb-6">降本增效量化效果</h4>
+                            <div class="space-y-6">
+                                <div class="bg-gradient-to-r from-green-900 to-emerald-900 bg-opacity-30 rounded-lg p-6 text-center">
+                                    <div class="text-4xl font-bold text-green-400 mb-2">6.6-8.9%</div>
+                                    <p class="text-gray-300 mb-1">综合成本率优化</p>
+                                    <p class="text-sm text-gray-400">中型财险公司预期改善幅度</p>
+                                </div>
+                                <div class="bg-gradient-to-r from-blue-900 to-cyan-900 bg-opacity-30 rounded-lg p-6 text-center">
+                                    <div class="text-4xl font-bold text-blue-400 mb-2">数百亿</div>
+                                    <p class="text-gray-300 mb-1">人力成本节省</p>
+                                    <p class="text-sm text-gray-400">AI技术全行业潜在贡献</p>
+                                </div>
+                                <div class="bg-gradient-to-r from-purple-900 to-indigo-900 bg-opacity-30 rounded-lg p-6 text-center">
+                                    <div class="text-4xl font-bold text-purple-400 mb-2">90</div>
+                                    <p class="text-gray-300 mb-1">秒完成核保</p>
+                                    <p class="text-sm text-gray-400">AI驱动的极致效率</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="border-t border-gray-600 pt-6">
+                        <h4 class="font-semibold text-white mb-4 text-center">新兴商业模式</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                            <div class="text-center bg-gradient-to-br from-blue-900 to-cyan-900 bg-opacity-30 rounded-lg p-4">
+                                <i class="fas fa-user text-blue-400 text-2xl mb-3"></i>
+                                <h5 class="font-semibold text-white mb-2">B2C</h5>
+                                <p class="text-sm text-gray-300">直接面向消费者在线销售</p>
+                            </div>
+                            <div class="text-center bg-gradient-to-br from-green-900 to-emerald-900 bg-opacity-30 rounded-lg p-4">
+                                <i class="fas fa-store text-green-400 text-2xl mb-3"></i>
+                                <h5 class="font-semibold text-white mb-2">B2B2C</h5>
+                                <p class="text-sm text-gray-300">平台化保险超市模式</p>
+                            </div>
+                            <div class="text-center bg-gradient-to-br from-yellow-900 to-orange-900 bg-opacity-30 rounded-lg p-4">
+                                <i class="fas fa-users text-yellow-400 text-2xl mb-3"></i>
+                                <h5 class="font-semibold text-white mb-2">B2A</h5>
+                                <p class="text-sm text-gray-300">代理人科技赋能</p>
+                            </div>
+                            <div class="text-center bg-gradient-to-br from-purple-900 to-indigo-900 bg-opacity-30 rounded-lg p-4">
+                                <i class="fas fa-cogs text-purple-400 text-2xl mb-3"></i>
+                                <h5 class="font-semibold text-white mb-2">B2B</h5>
+                                <p class="text-sm text-gray-300">技术服务商模式</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 双引擎协同效应 -->
+                <div class="glass-card rounded-xl p-8 md:p-12 mt-12 fade-in-up">
+                    <h3 class="text-3xl font-bold gold-gradient mb-6 text-center">双引擎协同：人口与科技的深度融合</h3>
+                    <p class="text-sm text-blue-400 mb-8 text-center tracking-wider">SYNERGY BETWEEN DEMOGRAPHICS AND TECHNOLOGY</p>
+                    
+                    <div class="mb-8">
+                        <p class="text-gray-200 leading-relaxed text-center mb-6">
+                            人口老龄化与科技革命这两大趋势并非平行发展，而是深度融合、相互促进的。
+                            老龄化社会产生的复杂、个性化、长周期的健康和养老需求，恰恰是传统、标准化的保险产品和销售模式难以有效满足的。
+                            要为一位患有慢性病的老人提供覆盖其整个生命周期的"保险+健康管理+养老服务"综合解决方案，就必须依赖于强大的科技能力。
+                        </p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="text-center bg-gradient-to-br from-gold-900 to-yellow-900 bg-opacity-30 rounded-lg p-6">
+                            <i class="fas fa-brain text-gold-400 text-3xl mb-4"></i>
+                            <h4 class="font-semibold text-white mb-3">精准风险评估</h4>
+                            <p class="text-sm text-gray-300 leading-relaxed">
+                                数据与AI是实现对"非标体"客户（如带病人群）精准风险评估和定价的前提
+                            </p>
+                        </div>
+                        <div class="text-center bg-gradient-to-br from-blue-900 to-indigo-900 bg-opacity-30 rounded-lg p-6">
+                            <i class="fas fa-heartbeat text-blue-400 text-3xl mb-4"></i>
+                            <h4 class="font-semibold text-white mb-3">实时健康监测</h4>
+                            <p class="text-sm text-gray-300 leading-relaxed">
+                                物联网（IoT）与可穿戴设备实现对客户健康状况的实时监测和主动干预
+                            </p>
+                        </div>
+                        <div class="text-center bg-gradient-to-br from-green-900 to-emerald-900 bg-opacity-30 rounded-lg p-6">
+                            <i class="fas fa-network-wired text-green-400 text-3xl mb-4"></i>
+                            <h4 class="font-semibold text-white mb-3">生态整合平台</h4>
+                            <p class="text-sm text-gray-300 leading-relaxed">
+                                数字化平台整合医疗服务网络和养老服务体系的必要基础设施
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 text-center">
+                        <div class="bg-gradient-to-r from-purple-900 to-indigo-900 bg-opacity-30 rounded-lg p-6">
+                            <h4 class="font-semibold text-purple-400 mb-3">投资者关注要点</h4>
+                            <p class="text-gray-200 leading-relaxed">
+                                能够成功驾驭"人口"和"科技"双引擎，实现二者良性互动的保险公司，将构筑起未来十年最深厚的竞争壁垒。
+                                评估一家保险公司的未来潜力，不仅要看其养老和健康产品的布局，更要审视其科技投入是否能有效地支撑这些战略的落地。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+                            </div>
+                            <p class="text-xs text-gray-400 mt-2">AI、大数据、云计算全面应用</p>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div class="border-l-4 border-blue-400 pl-4">
+                                <h4 class="font-semibold text-white mb-1">精准风险定价</h4>
+                                <p class="text-sm text-gray-300">大数据实现个性化、动态化定价</p>
+                            </div>
+                            <div class="border-l-4 border-purple-400 pl-4">
+                                <h4 class="font-semibold text-white mb-1">智能运营</h4>
+                                <p class="text-sm text-gray-300">AI自动化核保理赔，大幅提升效率</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 双引擎融合效应 -->
+                <div class="mt-12 glass-card rounded-xl p-8 fade-in-up">
+                    <h3 class="text-2xl font-bold gold-gradient mb-6 text-center">双引擎融合效应</h3>
+                    <p class="text-center text-blue-400 text-sm mb-8 tracking-wider">SYNERGY EFFECT</p>
+                    
+                    <div class="bg-gray-800 bg-opacity-50 rounded-lg p-6">
+                        <p class="text-gray-200 leading-relaxed text-center">
+                            老龄化社会产生的复杂、个性化、长周期的健康和养老需求，恰恰需要依赖强大的科技能力来满足。
+                            数据与AI是实现对"非标体"客户精准风险评估的前提，物联网与可穿戴设备是实现健康实时监测的关键技术，
+                            高效的数字化平台是整合医疗服务网络和养老服务体系的必要基础设施。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 投资展望 -->
+    <section id="outlook" class="py-20 relative">
+        <div class="container mx-auto px-6">
+            <div class="fade-in-up">
+                <h2 class="text-5xl font-playfair font-bold gold-gradient mb-8 text-center">
+                    竞争格局与投资展望
+                </h2>
+                <p class="text-center text-blue-400 text-sm font-light tracking-widest mb-16">
+                    COMPETITIVE LANDSCAPE & INVESTMENT OUTLOOK
+                </p>
+            </div>
+            
+            <div class="max-w-6xl mx-auto">
+                <!-- 头部企业业绩对比 -->
+                <div class="glass-card rounded-xl p-8 md:p-12 mb-12 fade-in-up">
+                    <h3 class="text-3xl font-bold gold-gradient mb-8 text-center">主要上市保险公司业绩表现</h3>
+                    <p class="text-center text-blue-400 text-sm mb-12 tracking-wider">LISTED INSURERS PERFORMANCE</p>
+                    
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left">
+                            <thead>
+                                <tr class="border-b border-gray-600">
+                                    <th class="pb-4 text-gold-400">公司</th>
+                                    <th class="pb-4 text-gold-400">NBV增速</th>
+                                    <th class="pb-4 text-gold-400">NBV Margin</th>
+                                    <th class="pb-4 text-gold-400">财险COR</th>
+                                    <th class="pb-4 text-gold-400">偿付能力</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-gray-200">
+                                <tr class="border-b border-gray-700">
+                                    <td class="py-4 font-semibold">中国人寿</td>
+                                    <td class="py-4 text-green-400">+14.0%</td>
+                                    <td class="py-4">-</td>
+                                    <td class="py-4">-</td>
+                                    <td class="py-4 text-green-400">218.54%</td>
+                                </tr>
+                                <tr class="border-b border-gray-700">
+                                    <td class="py-4 font-semibold">中国平安</td>
+                                    <td class="py-4 text-green-400">+36.2%</td>
+                                    <td class="py-4">-</td>
+                                    <td class="py-4 text-yellow-400">100.7%</td>
+                                    <td class="py-4 text-green-400">232.4%</td>
+                                </tr>
+                                <tr class="border-b border-gray-700">
+                                    <td class="py-4 font-semibold">中国太保</td>
+                                    <td class="py-4 text-green-400">+30.8%</td>
+                                    <td class="py-4 text-green-400">13.3%</td>
+                                    <td class="py-4 text-green-400">97.7%</td>
+                                    <td class="py-4 text-green-400">275%</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-4 font-semibold">中国人保</td>
+                                    <td class="py-4 text-green-400">+114.2%</td>
+                                    <td class="py-4">-</td>
+                                    <td class="py-4 text-green-400">97.8%</td>
+                                    <td class="py-4 text-green-400">232.4%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p class="text-xs text-gray-400 mt-4">*NBV增速为可比口径，COR为综合成本率，低于100%表示承保盈利</p>
+                    </div>
+                </div>
+                
+                <!-- 核心投资逻辑 -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="glass-card rounded-xl p-6 fade-in-up">
+                        <div class="text-center mb-6">
+                            <i class="fas fa-heart-pulse text-gold-400 text-3xl mb-4"></i>
+                            <h3 class="text-xl font-bold text-white">健康养老生态</h3>
+                            <p class="text-sm text-blue-400 tracking-wider">HEALTH & ELDERLY</p>
+                        </div>
+                        <p class="text-gray-200 text-sm leading-relaxed text-center">
+                            在"保险+健康管理"和"保险+养老服务"领域布局最完善的公司，将收获长期结构性红利
+                        </p>
+                    </div>
+                    
+                    <div class="glass-card rounded-xl p-6 fade-in-up delay-1">
+                        <div class="text-center mb-6">
+                            <i class="fas fa-car text-blue-400 text-3xl mb-4"></i>
+                            <h3 class="text-xl font-bold text-white">财险价值龙头</h3>
+                            <p class="text-sm text-blue-400 tracking-wider">P&C VALUE LEADERS</p>
+                        </div>
+                        <p class="text-gray-200 text-sm leading-relaxed text-center">
+                            率先破解新能源车险盈利难题，具备强大数据分析和产业合作能力的公司
+                        </p>
+                    </div>
+                    
+                    <div class="glass-card rounded-xl p-6 fade-in-up delay-2">
+                        <div class="text-center mb-6">
+                            <i class="fas fa-chart-line text-purple-400 text-3xl mb-4"></i>
+                            <h3 class="text-xl font-bold text-white">价值回归者</h3>
+                            <p class="text-sm text-blue-400 tracking-wider">VALUE RECOVERY</p>
+                        </div>
+                        <p class="text-gray-200 text-sm leading-relaxed text-center">
+                            完成渠道改革和战略调整，业绩迎来拐点的转型成功公司
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- 投资风险提示 -->
+                <div class="mt-12 gold-border rounded-xl p-8 fade-in-up">
+                    <h3 class="text-2xl font-bold gold-gradient mb-6 text-center">投资风险监控</h3>
+                    <p class="text-center text-blue-400 text-sm mb-8 tracking-wider">RISK MONITORING</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="font-semibold text-white mb-4 flex items-center">
+                                <i class="fas fa-exclamation-triangle text-yellow-400 mr-3"></i>
+                                主要风险
+                            </h4>
+                            <ul class="space-y-2 text-gray-300 text-sm">
+                                <li>• 持续利率下行压力</li>
+                                <li>• 资本市场剧烈波动</li>
+                                <li>• 监管政策不确定性</li>
+                                <li>• 战略执行风险</li>
+                                <li>• 科技巨头跨界竞争</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-white mb-4 flex items-center">
+                                <i class="fas fa-chart-bar text-green-400 mr-3"></i>
+                                关键指标
+                            </h4>
+                            <ul class="space-y-2 text-gray-300 text-sm">
+                                <li>• NBV及NBV Margin变化</li>
+                                <li>• 代理人产能提升情况</li>
+                                <li>• 综合成本率控制能力</li>
+                                <li>• 偿付能力充足率稳定性</li>
+                                <li>• "保险+"生态建设进展</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 结论与展望 -->
+    <section class="py-20 relative">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto text-center">
+                <div class="fade-in-up">
+                    <h2 class="text-5xl font-playfair font-bold gold-gradient mb-8">
+                        投资结论
+                    </h2>
+                    <p class="text-blue-400 text-sm font-light tracking-widest mb-12">
+                        INVESTMENT CONCLUSION
+                    </p>
+                </div>
+                
+                <div class="glass-card rounded-xl p-8 md:p-12 fade-in-up">
+                    <p class="text-xl leading-relaxed text-gray-200 mb-8">
+                        中国保险业的投资逻辑已经彻底改变。旧的、依赖规模扩张和监管红利的时代一去不复返，
+                        一个新的、强调价值创造、风险管理和生态协同的时代已经到来。
+                    </p>
+                    <p class="text-lg leading-relaxed text-gray-300 mb-8">
+                        对于具备远见和耐心的投资者而言，这不仅不是挑战，反而是识别真正优质企业、
+                        分享行业长期结构性增长红利的黄金机遇。
+                    </p>
+                    
+                    <div class="border-t border-gray-600 pt-8">
+                        <p class="text-sm text-gray-400">
+                            <i class="fas fa-exclamation-circle mr-2"></i>
+                            免责声明：本报告仅为行业分析与信息分享，不构成投资建议。市场有风险，投资需谨慎。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 返回顶部按钮 -->
+    <div class="fixed bottom-8 right-8 z-50">
+        <button id="backToTop" class="bg-gold-400 hover:bg-gold-300 text-black p-3 rounded-full shadow-lg transition-all duration-300 opacity-0 pointer-events-none">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+    </div>
+
+    <script>
+        // 页面加载后初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeAnimations();
+            initializeCharts();
+            initializeBackToTop();
+            initializeNavigation();
+        });
+        
+        // 滚动动画
+        function initializeAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+            
+            document.querySelectorAll('.fade-in-up').forEach(el => {
+                observer.observe(el);
+            });
+        }
+        
+        // 返回顶部功能
+        function initializeBackToTop() {
+            const backToTopBtn = document.getElementById('backToTop');
+            
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTopBtn.classList.remove('opacity-0', 'pointer-events-none');
+                    backToTopBtn.classList.add('opacity-100');
+                } else {
+                    backToTopBtn.classList.add('opacity-0', 'pointer-events-none');
+                    backToTopBtn.classList.remove('opacity-100');
+                }
+            });
+            
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+        
+        // 初始化图表
+        function initializeCharts() {
+            // 保费收入增长图表
+            const premiumChart = echarts.init(document.getElementById('premiumChart'));
+            const premiumOption = {
+                backgroundColor: 'transparent',
+                grid: {
+                    top: 20,
+                    right: 20,
+                    bottom: 40,
+                    left: 60
+                },
+                xAxis: {
+                    type: 'category',
+                    data: ['2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024'],
+                    axisLine: { lineStyle: { color: '#666' } },
+                    axisLabel: { color: '#999' }
+                },
+                yAxis: {
+                    type: 'value',
+                    name: '万亿元',
+                    nameTextStyle: { color: '#999' },
+                    axisLine: { lineStyle: { color: '#666' } },
+                    axisLabel: { color: '#999' },
+                    splitLine: { lineStyle: { color: '#333' } }
+                },
+                series: [{
+                    data: [3.66, 3.80, 4.26, 4.53, 4.49, 4.70, 5.12, 5.7],
+                    type: 'line',
+                    smooth: true,
+                    lineStyle: {
+                        width: 3,
+                        color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [
+                            { offset: 0, color: '#ffd700' },
+                            { offset: 1, color: '#fbbf24' }
+                        ])
+                    },
+                    itemStyle: {
+                        color: '#ffd700',
+                        borderWidth: 2,
+                        borderColor: '#fff'
+                    },
+                    areaStyle: {
+                        opacity: 0.1,
+                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                            { offset: 0, color: '#ffd700' },
+                            { offset: 1, color: 'transparent' }
+                        ])
+                    }
+                }],
+                tooltip: {
+                    trigger: 'axis',
+                    backgroundColor: 'rgba(0,0,0,0.8)',
+                    borderColor: '#ffd700',
+                    textStyle: { color: '#fff' }
+                }
+            };
+            premiumChart.setOption(premiumOption);
+            
+            // 总资产规模图表
+            const assetsChart = echarts.init(document.getElementById('assetsChart'));
+            const assetsOption = {
+                backgroundColor: 'transparent',
+                grid: {
+                    top: 20,
+                    right: 20,
+                    bottom: 40,
+                    left: 60
+                },
+                xAxis: {
+                    type: 'category',
+                    data: ['2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024'],
+                    axisLine: { lineStyle: { color: '#666' } },
+                    axisLabel: { color: '#999' }
+                },
+                yAxis: {
+                    type: 'value',
+                    name: '万亿元',
+                    nameTextStyle: { color: '#999' },
+                    axisLine: { lineStyle: { color: '#666' } },
+                    axisLabel: { color: '#999' },
+                    splitLine: { lineStyle: { color: '#333' } }
+                },
+                series: [{
+                    data: [16.75, 18.33, 20.56, 23.30, 24.89, 27.15, 29.96, 35.9],
+                    type: 'bar',
+                    itemStyle: {
+                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                            { offset: 0, color: '#60a5fa' },
+                            { offset: 1, color: '#1e40af' }
+                        ])
+                    },
+                    barWidth: '60%'
+                }],
+                tooltip: {
+                    trigger: 'axis',
+                    backgroundColor: 'rgba(0,0,0,0.8)',
+                    borderColor: '#60a5fa',
+                    textStyle: { color: '#fff' }
+                }
+            };
+            assetsChart.setOption(assetsOption);
+            
+            // 偿付能力监管三支柱图表
+            const solvencyChart = echarts.init(document.getElementById('solvencyChart'));
+            const solvencyOption = {
+                backgroundColor: 'transparent',
+                title: {
+                    text: '偿二代"三支柱"监管框架',
+                    textStyle: { color: '#ffd700', fontSize: 16 },
+                    left: 'center'
+                },
+                series: [{
+                    type: 'pie',
+                    radius: ['40%', '70%'],
+                    center: ['50%', '60%'],
+                    data: [
+                        { 
+                            value: 40, 
+                            name: '第一支柱\n定量资本要求',
+                            itemStyle: { color: '#ffd700' }
+                        },
+                        { 
+                            value: 35, 
+                            name: '第二支柱\n定性监管要求',
+                            itemStyle: { color: '#60a5fa' }
+                        },
+                        { 
+                            value: 25, 
+                            name: '第三支柱\n市场约束机制',
+                            itemStyle: { color: '#a855f7' }
+                        }
+                    ],
+                    label: {
+                        color: '#fff',
+                        fontSize: 12
+                    },
+                    labelLine: {
+                        lineStyle: { color: '#666' }
+                    }
+                }],
+                tooltip: {
+                    backgroundColor: 'rgba(0,0,0,0.8)',
+                    borderColor: '#ffd700',
+                    textStyle: { color: '#fff' }
+                }
+            };
+            solvencyChart.setOption(solvencyOption);
+            
+            // 响应式图表
+            window.addEventListener('resize', function() {
+                premiumChart.resize();
+                assetsChart.resize();
+                solvencyChart.resize();
+            });
+        }
+        
+        // 初始化导航功能
+        function initializeNavigation() {
+            // 移动端菜单切换
+            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+            const mobileMenu = document.getElementById('mobileMenu');
+            
+            if (mobileMenuToggle && mobileMenu) {
+                mobileMenuToggle.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+            
+            // 平滑滚动到指定章节
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = link.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    
+                    if (targetElement) {
+                        const offsetTop = targetElement.offsetTop - 80; // 考虑导航栏高度
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: 'smooth'
+                        });
+                        
+                        // 移动端菜单自动关闭
+                        if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                            mobileMenu.classList.add('hidden');
+                        }
+                    }
+                });
+            });
+            
+            // 导航高亮当前章节
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 100;
+                    const sectionHeight = section.offsetHeight;
+                    if (window.pageYOffset >= sectionTop && window.pageYOffset < sectionTop + sectionHeight) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('text-gold-400');
+                    link.classList.add('text-gray-300');
+                    if (link.getAttribute('href').substring(1) === current) {
+                        link.classList.remove('text-gray-300');
+                        link.classList.add('text-gold-400');
+                    }
+                });
+                
+                // 显示/隐藏返回顶部按钮
+                const scrollToTopBtn = document.getElementById('scrollToTop');
+                if (scrollToTopBtn) {
+                    if (window.pageYOffset > 300) {
+                        scrollToTopBtn.classList.remove('hidden');
+                    } else {
+                        scrollToTopBtn.classList.add('hidden');
+                    }
+                }
+            });
+            
+            // 返回顶部按钮功能
+            const scrollToTopBtn = document.getElementById('scrollToTop');
+            if (scrollToTopBtn) {
+                scrollToTopBtn.addEventListener('click', () => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
+        }
+    </script>
+</body>
+</html> 
